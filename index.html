@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiaqi Zhang, happy new year</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 初始页面：显示“Surprise”和按钮 -->
+    <div id="initial-page">
+        <h1>Surprise</h1>
+        <button onclick="showMessage()">点这里</button>
+    </div>
+
+    <!-- 祝福语页面：初始隐藏 -->
+    <div id="surprise-message" class="hidden">
+        <h1>张嘉琦，</h1>
+        <h1>新年快乐呀！</h1>
+        <h2>愿你在新的一年里笑容灿烂，心想事成，万事如意！</h2>
+    </div>
+
+    <!-- 音频播放器：初始隐藏 -->
+    <audio id="background-music" loop muted>
+        <source src="music.mp3" type="audio/mpeg">
+        <source src="music.ogg" type="audio/ogg">
+        您的浏览器不支持音频元素。
+    </audio>
+
+    <script>
+        function showMessage() {
+            // 隐藏初始页面
+            document.getElementById('initial-page').classList.add('hidden');
+
+            // 显示祝福语
+            document.getElementById('surprise-message').classList.remove('hidden');
+
+            // 播放音乐
+            const audio = document.getElementById('background-music');
+            audio.muted = false; // 解除静音
+            audio.play();        // 播放音乐
+        }
+    </script>
+    
+    <!-- 动态烟花效果 -->
+    <div class="fireworks">
+        <span class="firework"></span>
+        <span class="firework"></span>
+        <span class="firework"></span>
+        <span class="firework"></span>
+    </div>
+
+    <script>
+        // 创建烟花效果
+        function createFireworks() {
+            let firework = document.createElement('span');
+            firework.classList.add('firework');
+            firework.style.left = Math.random() * 100 + '%';
+            firework.style.top = Math.random() * 100 + '%';
+            document.querySelector('.fireworks').appendChild(firework);
+
+            // 动态效果
+            setTimeout(() => {
+                firework.remove();
+            }, 1000);
+        }
+        // 每隔一段时间生成烟花
+        setInterval(createFireworks, 700);
+
+    </script>
+
+</body>
+</html>
